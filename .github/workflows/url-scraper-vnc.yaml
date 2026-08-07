@@ -151,10 +151,7 @@ jobs:
           vendor/ungoogled-chromium/chrome --version
           echo "✅ Chromium ready"
 
-          # Clone cf-autoclick extension
-          git clone --depth 1 https://github.com/tenacious6/cf-autoclick.git vendor/cf-autoclick
-          test -f vendor/cf-autoclick/manifest.json
-          echo "✅ cf-autoclick ready"
+          echo "✅ No extension needed — inline CF solver"
 
       - name: Install Python deps & Start Scraper
         run: |
@@ -164,7 +161,7 @@ jobs:
           nohup python3 scraper.py \
             --port 8814 \
             --chrome "$SCRAPER_DIR/vendor/ungoogled-chromium/chrome" \
-            --extension "$SCRAPER_DIR/vendor/cf-autoclick" \
+             \
             --max-concurrent 3 \
             --timeout 60 \
             > /tmp/scraper.log 2>&1 &
@@ -251,7 +248,7 @@ jobs:
               nohup python3 scraper.py \
                 --port 8814 \
                 --chrome "$SCRAPER_DIR/vendor/ungoogled-chromium/chrome" \
-                --extension "$SCRAPER_DIR/vendor/cf-autoclick" \
+                 \
                 --max-concurrent 3 \
                 --timeout 60 \
                 > /tmp/scraper.log 2>&1 &
